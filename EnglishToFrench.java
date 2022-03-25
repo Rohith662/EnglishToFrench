@@ -5,7 +5,7 @@ import java.util.*;
 
 public class  EnglishToFrench  {
    public static void main(String[] args) {
-	   try {
+	   try {long startTime = System.currentTimeMillis();
 			File f1 = new File("D:\\Translate\\Eng2fre\\TranslateWords Challenge\\find_words.txt");
 			File f2 = new File("D:\\Translate\\Eng2fre\\TranslateWords Challenge\\t8.shakespeare.txt");
 			File f3 = new File("D:\\Translate\\Eng2fre\\TranslateWords Challenge\\french_dictionary.csv");
@@ -53,6 +53,8 @@ public class  EnglishToFrench  {
 			r1.close();
 			r3.close();
 			w1.close();
+		long endTime = System.currentTimeMillis();
+				System.out.print("Minutes "+(endTime-startTime)/60000+" Seconds "+((endTime-startTime)/1000)%60);
 	}
 	catch(IOException e) {
 		System.out.print("Error Occured");
