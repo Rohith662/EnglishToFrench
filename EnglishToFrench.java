@@ -1,10 +1,6 @@
 package Demo;
 import java.io.*;
 import java.util.*;
-import java.util.Map;
-import java.util.TreeMap;
-import java.util.regex.MatchResult;
-import java.util.stream.Stream;
 public class  EnglishToFrench  {
    public static void main(String[] args) {
 	   try {long startTime = System.currentTimeMillis();
