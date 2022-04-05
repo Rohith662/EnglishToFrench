@@ -1,8 +1,10 @@
 package Demo;
-
 import java.io.*;
 import java.util.*;
-
+import java.util.Map;
+import java.util.TreeMap;
+import java.util.regex.MatchResult;
+import java.util.stream.Stream;
 public class  EnglishToFrench  {
    public static void main(String[] args) {
 	   try {long startTime = System.currentTimeMillis();
@@ -17,10 +19,11 @@ public class  EnglishToFrench  {
 			Scanner r2;
 			Scanner r3 = new Scanner(f3);
 			BufferedWriter w1 = new BufferedWriter(new FileWriter("D:\\Translate\\Eng2fre\\TranslateWords Challenge\\t8.shakespeare.translated.txt",true));
-			
+			BufferedWriter w2 = new BufferedWriter(new FileWriter("D:\\Translate\\Eng2fre\\TranslateWords Challenge\\french_di.csv",true));
 			while(r1.hasNextLine()) {
 				flag=false;
 				String word = r1.nextLine();
+				int lo;
 				r2 = new Scanner(f2);
 				while(r2.hasNextLine()) {
 					String orgLine = r2.nextLine();
@@ -28,38 +31,34 @@ public class  EnglishToFrench  {
 					for(String i: line) {
 						if(i.equals(word)) {
 							while(r3.hasNextLine()) {
-								fre=r3.nextLine().split(",");
-								if(fre[0].equals(word)) {
+				  			fre=r3.nextLine().split(",");
+								if(fre[0].equals(word)) {	
 									orgLine= orgLine.replace(word, fre[1]);
-									System.out.println(fre[0]+" "+fre[1]);
-									flag=true;
-									break;
-								}
-							}
+									lo =orgLine.length();
+									System.out.println(fre[0]+" "+fre[1]+"  =  "+lo);
+									w2.write(fre[0]+","+fre[1]+","+lo);
+									w2.write("\n");
+									flag=true;	
+									break;	
+								}}
 							w1.write(orgLine);
 							w1.write("\n");
-							break;
-						}
-						
-					}
+							break;	
+						}}	
 					w1.write(orgLine);
 					w1.write("\n");
 					if (flag){
 						r2.close();
 						break;
-					}
-				}r2.close();
+					}}r2.close();
 			}
 			r1.close();
 			r3.close();
 			w1.close();
+			w2.close();
 		long endTime = System.currentTimeMillis();
 				System.out.print("Minutes "+(endTime-startTime)/60000+" Seconds "+((endTime-startTime)/1000)%60);
 	}
 	catch(IOException e) {
 		System.out.print("Error Occured");
-	}
-
-}
-
-}
+	}}}
